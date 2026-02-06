@@ -1,0 +1,166 @@
+<section id="vtz-grower-partner" style="max-width: 920px; margin: 0 auto; padding: 24px;">
+
+<!-- ================================
+STYLES (UNCHANGED)
+================================ -->
+
+<style>
+#vtz-grower-partner * { box-sizing: border-box; font-family: Arial, sans-serif; }
+#vtz-grower-partner h2 { margin: 0 0 12px; font-size: 26px; }
+#vtz-grower-partner h3 { margin: 22px 0 10px; font-size: 18px; }
+#vtz-grower-partner p { margin: 6px 0 12px; color: #333; line-height: 1.5; }
+#vtz-grower-partner .hint { font-size: 12px; color: #666; margin-top: -8px; }
+#vtz-grower-partner .card { border:1px solid #e4e4e4;border-radius:10px;padding:16px;margin:14px 0;background:#fff;}
+#vtz-grower-partner label { display:block;margin:10px 0 6px;font-weight:600;}
+#vtz-grower-partner input[type="text"],
+#vtz-grower-partner input[type="email"],
+#vtz-grower-partner textarea,
+#vtz-grower-partner select { width:100%;padding:10px 12px;border:1px solid #cfcfcf;border-radius:8px;font-size:14px;}
+#vtz-grower-partner textarea { min-height:90px;resize:vertical;}
+#vtz-grower-partner .row { display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media (max-width:700px){#vtz-grower-partner .row{grid-template-columns:1fr;}}
+#vtz-grower-partner .options { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+#vtz-grower-partner .opt { display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #efefef;border-radius:10px;background:#fafafa;}
+#vtz-grower-partner .req { color:#b00020;font-weight:700;margin-left:6px;}
+#vtz-grower-partner .hidden { display:none;}
+#vtz-grower-partner .btn { border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;background:#1f3b2c;color:#fff;font-size:15px;}
+#vtz-grower-partner .status { margin-top:12px;font-size:14px;}
+#vtz-grower-partner .status.ok { color:#0b6b2b;}
+#vtz-grower-partner .status.err { color:#b00020;}
+</style>
+
+<!-- ================================
+FORM (UNCHANGED CONTENT)
+================================ -->
+
+<form id="vtzForm"
+method="POST"
+action="https://script.google.com/macros/s/AKfycbxEqokvWa0xXEfNnRuU7gIkHZ0ga1CnnaoQR4XRSePxy3hONmke88G7fS4-DbWPeWFD/exec"
+novalidate>
+
+<!-- ⚠️ KEEP YOUR FULL FORM CONTENT HERE EXACTLY AS YOU ALREADY HAVE -->
+<!-- (I removed here only for readability — DO NOT DELETE FROM YOUR FILE) -->
+
+</form>
+
+
+<!-- ================================
+SCRIPT (FULL FIXED VERSION)
+================================ -->
+
+<script>
+(function(){
+
+/* COUNTRY LIST */
+const countries=[
+"United Arab Emirates","India","Oman","Saudi Arabia","Qatar","Kuwait","Bahrain",
+"United States","United Kingdom","Canada","Australia","Germany","France","Italy",
+"Netherlands","Singapore","Malaysia","Thailand","Indonesia","Philippines","Sri Lanka",
+"Bangladesh","Nepal","Pakistan","South Africa","Kenya","Nigeria","Egypt","Turkey",
+"Japan","South Korea","Vietnam","Spain","Portugal","Brazil","Mexico","Argentina",
+"New Zealand","Other"
+];
+
+const countrySel=document.getElementById("country");
+countries.forEach(c=>{
+let opt=document.createElement("option");
+opt.value=c;
+opt.textContent=c;
+countrySel.appendChild(opt);
+});
+
+/* PROGRAM TOGGLE */
+const progVoz=document.getElementById("progVoz");
+const progEco=document.getElementById("progEco");
+const vozSection=document.getElementById("vozSection");
+const ecoSection=document.getElementById("ecoSection");
+
+function toggleProgramSections(){
+vozSection.classList.toggle("hidden",!progVoz.checked);
+ecoSection.classList.toggle("hidden",!progEco.checked);
+}
+
+progVoz.addEventListener("change",toggleProgramSections);
+progEco.addEventListener("change",toggleProgramSections);
+toggleProgramSections();
+
+/* OTHER FIELD TOGGLE */
+function bindOther(chkId,wrapId,inputId){
+const chk=document.getElementById(chkId);
+const wrap=document.getElementById(wrapId);
+const inp=document.getElementById(inputId);
+if(!chk)return;
+
+chk.addEventListener("change",()=>{
+wrap.classList.toggle("hidden",!chk.checked);
+if(!chk.checked) inp.value="";
+});
+}
+
+bindOther("hydroOtherChk","hydroOtherWrap","hydroOther");
+bindOther("hydroCropOtherChk","hydroCropOtherWrap","hydroCropOther");
+bindOther("soilOtherChk","soilOtherWrap","soilOther");
+
+
+/* ==========================
+SUBMIT FIX (CRITICAL)
+========================== */
+
+const form=document.getElementById("vtzForm");
+const status=document.getElementById("statusMsg");
+const submitBtn=document.getElementById("submitBtn");
+
+form.addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+status.textContent="";
+status.className="status";
+
+if(!progVoz.checked && !progEco.checked){
+status.textContent="Please select at least one program.";
+status.className="status err";
+return;
+}
+
+if(!form.checkValidity()){
+form.reportValidity();
+return;
+}
+
+try{
+
+submitBtn.disabled=true;
+status.textContent="Submitting...";
+
+const data=new FormData(form);
+
+await fetch(form.action,{
+method:"POST",
+body:data,
+mode:"no-cors"   // ⭐ CRITICAL FIX FOR GOOGLE APPS SCRIPT
+});
+
+form.reset();
+toggleProgramSections();
+
+status.textContent="✅ Submitted successfully.";
+status.className="status ok";
+
+}catch(err){
+
+status.textContent="❌ Submission failed.";
+status.className="status err";
+
+}finally{
+
+submitBtn.disabled=false;
+
+}
+
+});
+
+})();
+</script>
+
+</section>
