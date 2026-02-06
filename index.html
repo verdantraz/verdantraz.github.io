@@ -5,140 +5,457 @@
 <title>Verdantraz Grower Partner Application</title>
 </head>
 
-<body style="background:#f6f8f7;margin:0;">
+<body>
 
-<section id="vtz-grower-partner" style="max-width:1000px;margin:auto;padding:24px;">
+<!-- YOUR FORM STARTS HERE -->
 
-<style>
+<section id="vtz-grower-partner" style="max-width: 920px; margin: 0 auto; padding: 24px;">
+  <style>
+    #vtz-grower-partner * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    #vtz-grower-partner h2 { margin: 0 0 12px; font-size: 26px; }
+    #vtz-grower-partner h3 { margin: 22px 0 10px; font-size: 18px; }
+    #vtz-grower-partner p  { margin: 6px 0 12px; color: #333; line-height: 1.5; }
+    #vtz-grower-partner .hint { font-size: 12px; color: #666; margin-top: -8px; }
+    #vtz-grower-partner .card { border: 1px solid #e4e4e4; border-radius: 10px; padding: 16px; margin: 14px 0; background: #fff; }
+    #vtz-grower-partner label { display: block; margin: 10px 0 6px; font-weight: 600; }
+    #vtz-grower-partner input[type="text"],
+    #vtz-grower-partner input[type="email"],
+    #vtz-grower-partner textarea,
+    #vtz-grower-partner select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cfcfcf;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    #vtz-grower-partner textarea { min-height: 90px; resize: vertical; }
+    #vtz-grower-partner .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 700px) { #vtz-grower-partner .row { grid-template-columns: 1fr; } }
 
-#vtz-grower-partner *{
-box-sizing:border-box;
-font-family:'Segoe UI',Arial,sans-serif;
-}
+    #vtz-grower-partner .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    @media (max-width: 700px) { #vtz-grower-partner .options { grid-template-columns: 1fr; } }
 
-.hero{
-background:linear-gradient(rgba(31,59,44,0.85),rgba(31,59,44,0.85)),
-url('https://images.unsplash.com/photo-1560493676-04071c5f467b');
-background-size:cover;
-background-position:center;
-padding:60px;
-color:white;
-text-align:center;
-border-radius:16px;
-margin-bottom:30px;
-}
+    #vtz-grower-partner .opt {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 10px; border: 1px solid #efefef; border-radius: 10px; background: #fafafa;
+    }
+    #vtz-grower-partner .opt input { margin-top: 3px; }
+    #vtz-grower-partner .req { color: #b00020; font-weight: 700; margin-left: 6px; }
+    #vtz-grower-partner .hidden { display: none; }
 
-.hero h1{
-margin:0;
-font-size:34px;
-font-weight:700;
-}
+    #vtz-grower-partner .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #1f3b2c;
+      color: #fff;
+      font-size: 15px;
+    }
+    #vtz-grower-partner .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    #vtz-grower-partner .status { margin-top: 12px; font-size: 14px; }
+    #vtz-grower-partner .status.ok { color: #0b6b2b; }
+    #vtz-grower-partner .status.err { color: #b00020; }
+    #vtz-grower-partner .divider { height: 1px; background: #efefef; margin: 14px 0; }
+  </style>
 
-.hero p{
-opacity:0.9;
-margin-top:10px;
-}
+  <h2>🧾 VERDANTRAZ GROWER PARTNER PROGRAM</h2>
+  <p><strong>Registration Questionnaire (Official)</strong></p>
+  <p class="hint">
+    This program is focused on performance validation, stability testing, and usability feedback — not promotion or endorsement.
+  </p>
 
-.card{
-border:none;
-border-radius:14px;
-padding:22px;
-margin:20px 0;
-background:#ffffff;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
+  <!-- IMPORTANT: Replace action URL below with your form endpoint -->
+  <form id="vtzForm" method="POST" action="https://script.google.com/macros/s/AKfycbxEqokvWa0xXEfNnRuU7gIkHZ0ga1CnnaoQR4XRSePxy3hONmke88G7fS4-DbWPeWFD/exec" novalidate>
+    <!-- SECTION 1 -->
+    <div class="card">
+      <h3>SECTION 1 — Applicant Identity <span class="req">(Mandatory)</span></h3>
+      <p class="hint">Traceability, seriousness, future communication, data integrity.</p>
 
-h2{
-font-size:28px;
-color:#1f3b2c;
-margin-bottom:8px;
-}
+      <div class="row">
+        <div>
+          <label for="fullName">Full Name <span class="req">*</span></label>
+          <input id="fullName" name="full_name" type="text" required />
+        </div>
+        <div>
+          <label for="email">Email Address <span class="req">*</span></label>
+          <input id="email" name="email" type="email" required />
+        </div>
+      </div>
 
-h3{
-color:#1f3b2c;
-font-size:20px;
-}
+      <div class="row">
+        <div>
+          <label for="whatsapp">Mobile / WhatsApp Number <span class="req">*</span></label>
+          <input id="whatsapp" name="whatsapp" type="text" placeholder="+91xxxxxxxxxx" required />
+          <div class="hint">Country code required.</div>
+        </div>
+        <div>
+          <label for="country">Country <span class="req">*</span></label>
+          <select id="country" name="country" required>
+            <option value="" selected disabled>Select country</option>
+          </select>
+        </div>
+      </div>
 
-p{color:#333;}
+      <div class="row">
+        <div>
+          <label for="city">City / Region <span class="req">*</span></label>
+          <input id="city" name="city_region" type="text" required />
+        </div>
+        <div>
+          <label>Are you applying as: <span class="req">*</span></label>
+          <div class="options" style="grid-template-columns: 1fr;">
+            <label class="opt"><input type="radio" name="applying_as" value="Individual grower" required /> Individual grower</label>
+            <label class="opt"><input type="radio" name="applying_as" value="Commercial grower / farm" required /> Commercial grower / farm</label>
+            <label class="opt"><input type="radio" name="applying_as" value="Institution / research setup" required /> Institution / research setup</label>
+            <label class="opt"><input type="radio" name="applying_as" value="Hobby / home grower" required /> Hobby / home grower</label>
+          </div>
+        </div>
+      </div>
+    </div>
 
-.hint{font-size:12px;color:#666;}
 
-label{
-display:block;
-margin:10px 0 6px;
-font-weight:600;
-}
+<!-- SECTION 1B — SHIPPING ADDRESS -->
+<div class="card">
+  <h3>SECTION 1B — Sample Shipping Address <span class="req">(Mandatory)</span></h3>
+  <p class="hint">
+    This address will be used to send trial samples if you are shortlisted.
+    Please ensure it is accurate and complete.
+  </p>
 
-input,textarea,select{
-width:100%;
-padding:12px;
-border-radius:10px;
-border:1px solid #ddd;
-background:#fafafa;
-transition:0.3s;
-}
+  <label for="shipAddress">Full Address (House / Building / Street) <span class="req">*</span></label>
+  <textarea id="shipAddress" name="shipping_address" required></textarea>
 
-input:focus,textarea:focus,select:focus{
-outline:none;
-border-color:#1f3b2c;
-background:white;
-box-shadow:0 0 0 2px rgba(31,59,44,0.1);
-}
+  <div class="row">
+    <div>
+      <label for="shipCity">City / Town <span class="req">*</span></label>
+      <input id="shipCity" name="shipping_city" type="text" required />
+    </div>
 
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
-}
+    <div>
+      <label for="shipState">State / Province <span class="req">*</span></label>
+      <input id="shipState" name="shipping_state" type="text" required />
+    </div>
+  </div>
 
-@media(max-width:700px){
-.row{grid-template-columns:1fr;}
-}
+  <div class="row">
+    <div>
+      <label for="shipPincode">PIN / ZIP Code <span class="req">*</span></label>
+      <input id="shipPincode" name="shipping_pincode" type="text" required />
+    </div>
 
-.options{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:8px;
-}
-
-.opt{
-display:flex;
-gap:10px;
-align-items:flex-start;
-padding:12px;
-border-radius:10px;
-background:#f9faf9;
-}
-
-.btn{
-background:linear-gradient(135deg,#1f3b2c,#3e6f55);
-border:none;
-padding:14px 20px;
-border-radius:999px;
-color:white;
-font-weight:700;
-cursor:pointer;
-box-shadow:0 6px 15px rgba(0,0,0,0.15);
-}
-
-.status{margin-top:12px;}
-.status.ok{color:#0b6b2b;}
-.status.err{color:#b00020;}
-
-.hidden{display:none;}
-
-</style>
-
-<div class="hero">
-<h1>Verdantraz Grower Partner Program</h1>
-<p>Performance validation • Stability testing • Real grower feedback</p>
+    <div>
+      <label>Country</label>
+      <input type="text" value="Same as selected above" disabled />
+      <div class="hint">Country will be taken from Section 1.</div>
+    </div>
+  </div>
 </div>
 
-<h2>🧾 VERDANTRAZ GROWER PARTNER PROGRAM</h2>
-<p><strong>Registration Questionnaire (Official)</strong></p>
 
-<form id="vtzForm" method="POST" action="https://script.google.com/macros/s/AKfycbxEqokvWa0xXEfNnRuU7gIkHZ0ga1CnnaoQR4XRSePxy3hONmke88G7fS4-DbWPeWFD/exec" novalidate>
 
-<!-- KEEP ALL YOUR EXISTING FORM CONTENT HERE EXACTLY SAME -->
+    <!-- SECTION 2 -->
+    <div class="card">
+      <h3>SECTION 2 — Program Selection <span class="req">(Mandatory)</span></h3>
+      <p class="hint">Clear separation of Vozunix vs Ecovetz trials. (You may select both.)</p>
 
+      <div class="options" style="grid-template-columns: 1fr;">
+        <label class="opt">
+          <input type="checkbox" id="progVoz" name="programs[]" value="Vozunix Grower Partner (Hydroponics)" />
+          Vozunix Grower Partner (Hydroponics)
+        </label>
+        <label class="opt">
+          <input type="checkbox" id="progEco" name="programs[]" value="Ecovetz Grower Partner (Soil Regeneration)" />
+          Ecovetz Grower Partner (Soil Regeneration)
+        </label>
+      </div>
+
+      <div class="hint">If both are selected, you will continue with both sections below.</div>
+    </div>
+
+    <!-- SECTION 3A (VOZUNIX) -->
+    <div class="card hidden" id="vozSection">
+      <h3>SECTION 3A — Vozunix (Hydroponics) Details</h3>
+      <p class="hint">Filter serious hydro growers + ensure compatibility.</p>
+
+      <label>Hydroponic system type</label>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="hydro_system[]" value="NFT" /> NFT</label>
+        <label class="opt"><input type="checkbox" name="hydro_system[]" value="DWC" /> DWC</label>
+        <label class="opt"><input type="checkbox" name="hydro_system[]" value="Kratky" /> Kratky</label>
+        <label class="opt"><input type="checkbox" name="hydro_system[]" value="Bucket / Dutch bucket" /> Bucket / Dutch bucket</label>
+        <label class="opt"><input type="checkbox" name="hydro_system[]" value="Vertical system" /> Vertical system</label>
+        <label class="opt">
+          <input type="checkbox" id="hydroOtherChk" name="hydro_system[]" value="Other" /> Other
+        </label>
+      </div>
+
+      <div id="hydroOtherWrap" class="hidden">
+        <label for="hydroOther">Other (specify)</label>
+        <input id="hydroOther" name="hydro_system_other" type="text" />
+      </div>
+
+      <label>Total nutrient tank capacity (liters)</label>
+      <div class="options" style="grid-template-columns: 1fr;">
+        <label class="opt"><input type="radio" name="tank_capacity" value="≤ 25 L" /> ≤ 25 L</label>
+        <label class="opt"><input type="radio" name="tank_capacity" value="26–100 L" /> 26–100 L</label>
+        <label class="opt"><input type="radio" name="tank_capacity" value="101–250 L" /> 101–250 L</label>
+        <label class="opt"><input type="radio" name="tank_capacity" value="251–500 L" /> 251–500 L</label>
+        <label class="opt"><input type="radio" name="tank_capacity" value="500 L+" /> 500 L+</label>
+      </div>
+
+      <label>Crops currently grown</label>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="hydro_crops[]" value="Leafy greens" /> Leafy greens</label>
+        <label class="opt"><input type="checkbox" name="hydro_crops[]" value="Herbs" /> Herbs</label>
+        <label class="opt"><input type="checkbox" name="hydro_crops[]" value="Fruiting crops" /> Fruiting crops</label>
+        <label class="opt"><input type="checkbox" name="hydro_crops[]" value="Mixed" /> Mixed</label>
+        <label class="opt"><input type="checkbox" id="hydroCropOtherChk" name="hydro_crops[]" value="Other" /> Other</label>
+      </div>
+
+      <div id="hydroCropOtherWrap" class="hidden">
+        <label for="hydroCropOther">Other (specify)</label>
+        <input id="hydroCropOther" name="hydro_crops_other" type="text" />
+      </div>
+
+      <label>Current nutrient type used</label>
+      <div class="options" style="grid-template-columns: 1fr;">
+        <label class="opt"><input type="radio" name="current_nutrient_type" value="Synthetic A+B" /> Synthetic A+B</label>
+        <label class="opt"><input type="radio" name="current_nutrient_type" value="Organic hydro nutrients" /> Organic hydro nutrients</label>
+        <label class="opt"><input type="radio" name="current_nutrient_type" value="Self-prepared nutrients" /> Self-prepared nutrients</label>
+        <label class="opt"><input type="radio" name="current_nutrient_type" value="Currently not using nutrients" /> Currently not using nutrients</label>
+      </div>
+
+      <label>Are you able to measure the following?</label>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="can_measure[]" value="EC" /> EC</label>
+        <label class="opt"><input type="checkbox" name="can_measure[]" value="pH" /> pH</label>
+        <label class="opt"><input type="checkbox" name="can_measure[]" value="Water temperature" /> Water temperature</label>
+        <label class="opt"><input type="checkbox" name="can_measure[]" value="None of the above" /> None of the above</label>
+      </div>
+    </div>
+
+    <!-- SECTION 3B (ECOVETZ) -->
+    <div class="card hidden" id="ecoSection">
+      <h3>SECTION 3B — Ecovetz (Soil) Details</h3>
+      <p class="hint">Ensure real soil trials, not casual use.</p>
+
+      <label>Type of soil application</label>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="soil_application[]" value="Open field" /> Open field</label>
+        <label class="opt"><input type="checkbox" name="soil_application[]" value="Plantation / orchard" /> Plantation / orchard</label>
+        <label class="opt"><input type="checkbox" name="soil_application[]" value="Pots / grow bags" /> Pots / grow bags</label>
+        <label class="opt"><input type="checkbox" name="soil_application[]" value="Degraded / problem soil" /> Degraded / problem soil</label>
+        <label class="opt"><input type="checkbox" id="soilOtherChk" name="soil_application[]" value="Other" /> Other</label>
+      </div>
+
+      <div id="soilOtherWrap" class="hidden">
+        <label for="soilOther">Other (specify)</label>
+        <input id="soilOther" name="soil_application_other" type="text" />
+      </div>
+
+      <label>Approximate area under trial</label>
+      <div class="options" style="grid-template-columns: 1fr;">
+        <label class="opt"><input type="radio" name="trial_area" value="Home garden / pots" /> Home garden / pots</label>
+        <label class="opt"><input type="radio" name="trial_area" value="< 0.5 acre" /> &lt; 0.5 acre</label>
+        <label class="opt"><input type="radio" name="trial_area" value="0.5 – 2 acres" /> 0.5 – 2 acres</label>
+        <label class="opt"><input type="radio" name="trial_area" value="2 acres+" /> 2 acres+</label>
+      </div>
+
+      <label for="primaryCrops">Primary crop(s)</label>
+      <input id="primaryCrops" name="primary_crops" type="text" />
+
+      <label>Current soil condition (best match)</label>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="soil_condition[]" value="Low fertility" /> Low fertility</label>
+        <label class="opt"><input type="checkbox" name="soil_condition[]" value="Chemically exhausted" /> Chemically exhausted</label>
+        <label class="opt"><input type="checkbox" name="soil_condition[]" value="Poor microbial activity" /> Poor microbial activity</label>
+        <label class="opt"><input type="checkbox" name="soil_condition[]" value="Salinity / pH issues" /> Salinity / pH issues</label>
+        <label class="opt"><input type="checkbox" name="soil_condition[]" value="Unknown / not tested" /> Unknown / not tested</label>
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="card">
+      <h3>SECTION 4 — Participation Commitment <span class="req">(Mandatory)</span></h3>
+      <p class="hint">This is a structured field advisory program.</p>
+
+      <label>Are you willing to follow a structured trial protocol provided by Verdantraz? <span class="req">*</span></label>
+      <select name="commit_protocol" required>
+        <option value="" selected disabled>Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Are you willing to share honest performance feedback (positive or negative)? <span class="req">*</span></label>
+      <select name="commit_feedback" required>
+        <option value="" selected disabled>Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Can you document observations periodically (photos / notes / basic metrics)? <span class="req">*</span></label>
+      <select name="commit_document" required>
+        <option value="" selected disabled>Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Are you comfortable with a non-disclosure and non-endorsement participation agreement? <span class="req">*</span></label>
+      <select name="commit_nda" required>
+        <option value="" selected disabled>Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <div class="hint">If “No” to any, applicant is marked low priority internally.</div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="card">
+      <h3>SECTION 5 — Motivation & Intent <span class="req">(Critical)</span></h3>
+
+      <label for="why">Why do you want to participate in this program? <span class="req">*</span></label>
+      <textarea id="why" name="motivation" required></textarea>
+
+      <label for="challenge">What is the single biggest challenge you face in your current growing setup?</label>
+      <textarea id="challenge" name="biggest_challenge"></textarea>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="card">
+      <h3>SECTION 6 — Recognition & Consent</h3>
+
+      <label>Do you consent to being listed (name / location only) as a Verdantraz Grower Partner?</label>
+      <select name="consent_listed">
+        <option value="" selected disabled>Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Do you agree that participation does not constitute employment, distributorship, or commercial endorsement? <span class="req">*</span></label>
+      <select name="non_endorsement_agree" required>
+        <option value="" selected disabled>Select</option>
+        <option value="Yes">Yes</option>
+      </select>
+    </div>
+
+    <!-- SECTION 7 -->
+    <div class="card">
+      <h3>SECTION 7 — Final Confirmation <span class="req">*</span></h3>
+
+      <label class="opt" style="background:#fff;">
+        <input type="checkbox" id="finalConfirm" name="final_confirmation" value="Yes" required />
+        I confirm that the information provided is accurate to the best of my knowledge and I understand this is a structured field advisory program.
+      </label>
+
+      <div class="divider"></div>
+
+      <button class="btn" type="submit" id="submitBtn">Submit Application</button>
+      <div id="statusMsg" class="status"></div>
+    </div>
+  </form>
+
+  <script>
+    (function () {
+      // Populate countries (simple built-in list). Add/remove if you want.
+      const countries = [
+        "United Arab Emirates","India","Oman","Saudi Arabia","Qatar","Kuwait","Bahrain",
+        "United States","United Kingdom","Canada","Australia","Germany","France","Italy","Netherlands",
+        "Singapore","Malaysia","Thailand","Indonesia","Philippines","Sri Lanka","Bangladesh","Nepal","Pakistan",
+        "South Africa","Kenya","Nigeria","Egypt","Turkey","Japan","South Korea","Vietnam","Spain","Portugal",
+        "Brazil","Mexico","Argentina","New Zealand","Other"
+      ];
+      const countrySel = document.getElementById("country");
+      countries.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c; opt.textContent = c;
+        countrySel.appendChild(opt);
+      });
+
+      const progVoz = document.getElementById("progVoz");
+      const progEco = document.getElementById("progEco");
+      const vozSection = document.getElementById("vozSection");
+      const ecoSection = document.getElementById("ecoSection");
+
+      function toggleProgramSections() {
+        vozSection.classList.toggle("hidden", !progVoz.checked);
+        ecoSection.classList.toggle("hidden", !progEco.checked);
+      }
+      progVoz.addEventListener("change", toggleProgramSections);
+      progEco.addEventListener("change", toggleProgramSections);
+      toggleProgramSections();
+
+      // "Other" reveal toggles
+      function bindOther(chkId, wrapId, inputId) {
+        const chk = document.getElementById(chkId);
+        const wrap = document.getElementById(wrapId);
+        const inp = document.getElementById(inputId);
+        if (!chk || !wrap || !inp) return;
+        chk.addEventListener("change", () => {
+          wrap.classList.toggle("hidden", !chk.checked);
+          if (!chk.checked) inp.value = "";
+        });
+      }
+      bindOther("hydroOtherChk", "hydroOtherWrap", "hydroOther");
+      bindOther("hydroCropOtherChk", "hydroCropOtherWrap", "hydroCropOther");
+      bindOther("soilOtherChk", "soilOtherWrap", "soilOther");
+
+      // Require at least one program selection
+      const form = document.getElementById("vtzForm");
+      const status = document.getElementById("statusMsg");
+      const submitBtn = document.getElementById("submitBtn");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        status.textContent = "";
+        status.className = "status";
+
+        if (!progVoz.checked && !progEco.checked) {
+          status.textContent = "Please select at least one program (Vozunix and/or Ecovetz).";
+          status.className = "status err";
+          return;
+        }
+
+        // Basic HTML validity check
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // Send to your endpoint
+        try {
+          submitBtn.disabled = true;
+          status.textContent = "Submitting…";
+          const data = new FormData(form);
+
+          const res = await fetch(form.action, {
+  	  method: "POST",
+  	  body: data,
+  	  redirect: "follow"
+          });
+
+          if (!res.ok) throw new Error("Submission failed");
+
+          form.reset();
+          toggleProgramSections();
+          status.textContent = "✅ Submitted successfully. We’ll contact you if shortlisted.";
+          status.className = "status ok";
+        } catch (err) {
+          status.textContent = "❌ Submission failed. Please try again or contact Verdantraz.";
+          status.className = "status err";
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</section>
+
+
+</section>
+
+</body>
+</html>
