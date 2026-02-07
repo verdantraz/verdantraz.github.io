@@ -11,10 +11,7 @@
 
 <h2>🧾 VERDANTRAZ GROWER PARTNER PROGRAM</h2>
 
-<form id="vtzForm"
-method="POST"
-action="https://script.google.com/macros/s/AKfycbwORHib8M0EzUb3G7qx-PpWwH1rz-DY7Dfm7y51mWBjZ_6WDeYomRqDPxYLf55VdbeR/exec"
-target="hidden_iframe">
+<form id="vtzForm">
 
 <!-- SECTION 1 -->
 
@@ -36,18 +33,21 @@ target="hidden_iframe">
 <input name="city_region" required>
 
 <label>Applying As *</label>
+<br>
 <input type="radio" name="applying_as" value="Individual grower" required> Individual
 <input type="radio" name="applying_as" value="Commercial grower"> Commercial
 
+<br><br>
+
 <button type="submit" id="submitBtn">Submit Application</button>
 
-<div id="statusMsg"></div>
+<div id="statusMsg" style="margin-top:10px;"></div>
 
 </form>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-
 <script>
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwORHib8M0EzUb3G7qx-PpWwH1rz-DY7Dfm7y51mWBjZ_6WDeYomRqDPxYLf55VdbeR/exec";
 
 const countries = ["United Arab Emirates","India","Oman","Saudi Arabia","Qatar"];
 
@@ -64,20 +64,41 @@ const form = document.getElementById("vtzForm");
 const status = document.getElementById("statusMsg");
 const submitBtn = document.getElementById("submitBtn");
 
-/* IMPORTANT:
-NO preventDefault
-We allow normal form submission */
+form.addEventListener("submit", async function(e){
 
-form.addEventListener("submit", function(){
+  e.preventDefault();
 
-  submitBtn.disabled = true;
-  status.innerHTML="Submitting...";
+  status.innerHTML="";
+  submitBtn.disabled=true;
 
-  setTimeout(()=>{
-     form.reset();
-     status.innerHTML="✅ Submitted successfully.";
-     submitBtn.disabled=false;
-  },2000);
+  try{
+
+    status.innerHTML="Submitting...";
+
+    const formData = new FormData(form);
+
+    const response = await fetch(SCRIPT_URL,{
+      method:"POST",
+      body:formData
+    });
+
+    if(!response.ok){
+      throw new Error("Submission failed");
+    }
+
+    form.reset();
+    status.innerHTML="✅ Submitted successfully.";
+
+  }catch(err){
+
+    console.error(err);
+    status.innerHTML="❌ Submission failed. Please try again.";
+
+  }finally{
+
+    submitBtn.disabled=false;
+
+  }
 
 });
 
